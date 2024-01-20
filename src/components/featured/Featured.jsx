@@ -3,9 +3,10 @@ import "./featured.css";
 import DaNangImage from "../../data/CityImage/DaNang.jpg";
 import HaNoiImage from "../../data/CityImage/HaNoi.jpg";
 import HCMImage from "../../data/CityImage/HCM.jpg";
+import Base_URL from "../../hooks/Base_URL";
 const Featured = () => {
   const { data, loading } = useFetch(
-    "http://localhost:8800/hotel/countByCity?cities=Ha Noi,Da Nang,Ho Chi Minh"
+    `${Base_URL}/hotel/countByCity?cities=Ha Noi,Da Nang,Ho Chi Minh`
   );
   return (
     <div className="featured">

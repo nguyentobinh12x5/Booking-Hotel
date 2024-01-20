@@ -1,8 +1,9 @@
+import Base_URL from "../../hooks/Base_URL";
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
 
 const FeaturedProperties = () => {
-  const { data, loading } = useFetch("http://localhost:8800/hotel");
+  const { data, loading } = useFetch(`${Base_URL}/hotel`);
   const topRatedHotels = data
     .sort((a, b) => Number(b.rating) - Number(a.rating))
     .slice(0, 3);

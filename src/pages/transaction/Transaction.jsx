@@ -4,12 +4,11 @@ import Header from "../../components/header/Header";
 import "./Transaction.css";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
+import Base_URL from "../../hooks/Base_URL";
 const Transaction = () => {
   const { user } = useContext(AuthContext);
   console.log(user);
-  const { data, loading } = useFetch(
-    `http://localhost:8800/transaction/${user.email}`
-  );
+  const { data, loading } = useFetch(`${Base_URL}/transaction/${user.email}`);
   console.log(data);
   return (
     <div>

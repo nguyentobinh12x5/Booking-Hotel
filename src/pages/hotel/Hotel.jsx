@@ -16,6 +16,7 @@ import useFetch from "../../hooks/useFetch";
 import { useLocation, useNavigate } from "react-router-dom";
 import { SearchContext } from "../../context/SearchContext";
 import { AuthContext } from "../../context/AuthContext";
+import Base_URL from "../../hooks/Base_URL";
 
 const Hotel = () => {
   const { user } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const Hotel = () => {
   const id = location.pathname.split("/")[2];
   const [slideNumber, setSlideNumber] = useState(0);
   const [open, setOpen] = useState(false);
-  const { data } = useFetch(`http://localhost:8800/hotel/find/${id}`);
+  const { data } = useFetch(`${Base_URL}/hotel/find/${id}`);
   const { dates, options } = useContext(SearchContext);
   const MILLISENCONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {

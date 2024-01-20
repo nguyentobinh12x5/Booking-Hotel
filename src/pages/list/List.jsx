@@ -10,6 +10,7 @@ import { DateRange } from "react-date-range";
 import SearchItem from "../../components/searchItem/SearchItem";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext";
+import Base_URL from "../../hooks/Base_URL";
 const List = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination);
@@ -19,9 +20,7 @@ const List = () => {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
   const { data, loading, reFetch } = useFetch(
-    `http://localhost:8800/hotel?search=${destination}&min=${min || 0}&max=${
-      max || 999
-    }`
+    `${Base_URL}/hotel?search=${destination}&min=${min || 0}&max=${max || 999}`
   );
   //
   const navigate = useNavigate();

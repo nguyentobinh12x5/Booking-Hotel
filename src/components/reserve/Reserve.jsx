@@ -4,15 +4,14 @@ import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Base_URL from "../../hooks/Base_URL";
 const Reserve = ({ hotelId, inforUser, days }) => {
   const [selectedRooms, setSelectedRooms] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [paymentMethod, setPaymentMethod] = useState("");
   const [roomId, setRoomIt] = useState([]);
   const navigate = useNavigate();
-  const { data, loading } = useFetch(
-    `http://localhost:8800/hotel/room/${hotelId}`
-  );
+  const { data, loading } = useFetch(`${Base_URL}/hotel/room/${hotelId}`);
   console.log(data);
   const { dates } = useContext(SearchContext);
   const getDatesInRange = (startDate, endDate) => {
@@ -65,15 +64,12 @@ const Reserve = ({ hotelId, inforUser, days }) => {
         price: totalPrice,
       };
       console.log(newTransaction);
-      await axios.post("http://localhost:8800/transaction", newTransaction);
+      await axios.post(`${Base_URL}/transaction`, newTransaction);
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const res = axios.put(
-            `http://localhost:8800/room/availability/${roomId.id}`,
-            {
-              dates: allDates,
-            }
-          );
+          const res = axios.put(`${Base_URL}/room/availability/${roomId.id}`, {
+            dates: allDates,
+          });
         })
       );
       navigate("/transaction");

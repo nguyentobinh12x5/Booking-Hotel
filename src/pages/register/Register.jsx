@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Register.css";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import Base_URL from "../../hooks/Base_URL";
 const Register = () => {
   const navigate = useNavigate();
   const [creadentials, setCredentials] = useState({
@@ -17,10 +18,7 @@ const Register = () => {
   const handleClick = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(
-        "http://localhost:8800/auth/register",
-        creadentials
-      );
+      const res = await axios.post(`${Base_URL}/auth/register`, creadentials);
       console.log(res.data);
       navigate("/login");
     } catch (err) {
