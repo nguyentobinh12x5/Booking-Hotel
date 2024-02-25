@@ -21,3 +21,4 @@ yarn-error.log*
 # windows specific
 Thumbs.db
 Desktop.ini
+.vercel

@@ -1,7 +1,6 @@
 import Base_URL from "../../hooks/Base_URL";
 import useFetch from "../../hooks/useFetch";
 import "./featuredProperties.css";
-
 const FeaturedProperties = () => {
   const { data, loading } = useFetch(`${Base_URL}/hotel`);
   const topRatedHotels = data
@@ -16,11 +15,7 @@ const FeaturedProperties = () => {
           {topRatedHotels.map((item) => (
             <div className="fpItem" key={item._id}>
               <img src={item.photos[0]} alt="" className="fpImg" />
-              <span className="fpName">
-                <a href="./hotels/0" target="_blank">
-                  {item.name}
-                </a>
-              </span>
+              <span className="fpName">{item.name}</span>
               <span className="fpCity">{item.city}</span>
               <span className="fpPrice">
                 Starting from ${item.cheapestPrice}
